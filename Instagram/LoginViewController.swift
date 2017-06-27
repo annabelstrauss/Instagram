@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func didPressSignIn(_ sender: Any) {
         
+        //check to display error message if one of the field is empty
         if (usernameTextField.text?.isEmpty)! || (passwordTextField.text?.isEmpty)! {
             present(emptyFieldAlert, animated: true) { }
             return
@@ -58,6 +59,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func didPressSignUp(_ sender: Any) {
         
+        //check to display error message if one of the field is empty
         if (usernameTextField.text?.isEmpty)! || (passwordTextField.text?.isEmpty)! {
             present(emptyFieldAlert, animated: true) { }
             return

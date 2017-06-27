@@ -11,6 +11,9 @@
 		8D30018A44611F03C5A10812 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B36D5313F6A45F443A83E2F /* Pods_Instagram.framework */; };
 		C982CC0D2189F08C0E40996A /* Pods_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2157A71AD43A559C46D448B /* Pods_InstagramUITests.framework */; };
 		E175E5BB1F01C4D10013580C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5BA1F01C4D10013580C /* LoginViewController.swift */; };
+		E175E5BD1F02FA860013580C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5BC1F02FA860013580C /* HomeViewController.swift */; };
+		E175E5BF1F02FA930013580C /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5BE1F02FA930013580C /* CaptureViewController.swift */; };
+		E175E5C11F02FA9B0013580C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5C01F02FA9B0013580C /* ProfileViewController.swift */; };
 		E1C995B71F01C10D00164C69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C995B61F01C10D00164C69 /* AppDelegate.swift */; };
 		E1C995BC1F01C10D00164C69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C995BA1F01C10D00164C69 /* Main.storyboard */; };
 		E1C995BE1F01C10D00164C69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1C995BD1F01C10D00164C69 /* Assets.xcassets */; };
@@ -47,6 +50,9 @@
 		C2157A71AD43A559C46D448B /* Pods_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDA236DF63DEC3225BF36B30 /* Pods-InstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramUITests/Pods-InstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E175E5BA1F01C4D10013580C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E175E5BC1F02FA860013580C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E175E5BE1F02FA930013580C /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		E175E5C01F02FA9B0013580C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E1C995B31F01C10D00164C69 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1C995B61F01C10D00164C69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1C995BB1F01C10D00164C69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -143,6 +149,9 @@
 				E1C995BF1F01C10D00164C69 /* LaunchScreen.storyboard */,
 				E1C995C21F01C10D00164C69 /* Info.plist */,
 				E175E5BA1F01C4D10013580C /* LoginViewController.swift */,
+				E175E5BC1F02FA860013580C /* HomeViewController.swift */,
+				E175E5BE1F02FA930013580C /* CaptureViewController.swift */,
+				E175E5C01F02FA9B0013580C /* ProfileViewController.swift */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -447,7 +456,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E175E5BB1F01C4D10013580C /* LoginViewController.swift in Sources */,
+				E175E5BF1F02FA930013580C /* CaptureViewController.swift in Sources */,
+				E175E5C11F02FA9B0013580C /* ProfileViewController.swift in Sources */,
 				E1C995B71F01C10D00164C69 /* AppDelegate.swift in Sources */,
+				E175E5BD1F02FA860013580C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
