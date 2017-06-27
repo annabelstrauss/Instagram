@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let currentUser = PFUser.current() {
             print("Welcome back \(currentUser.username!) 😍")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController")
-            window?.rootViewController = chatViewController
+            let tabbarViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+            window?.rootViewController = tabbarViewController
         }
         
         return true

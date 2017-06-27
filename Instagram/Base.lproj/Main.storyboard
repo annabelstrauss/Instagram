@@ -66,7 +66,7 @@
         <!--Home-->
         <scene sceneID="5Sa-2F-q55">
             <objects>
-                <viewController id="eGN-Rw-l8Y" customClass="HomeViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="eGN-Rw-l8Y" customClass="HomeViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xgM-Tn-PUd"/>
                         <viewControllerLayoutGuide type="bottom" id="4JT-vy-28M"/>
@@ -123,7 +123,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="WyU-Mn-kQr">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ByD-TJ-qE3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="ByD-TJ-qE3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="S7T-kJ-3L7">
                         <autoresizingMask key="autoresizingMask"/>
