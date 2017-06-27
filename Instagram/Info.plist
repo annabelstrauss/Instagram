@@ -34,5 +34,14 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSPhotoLibraryUsageDescription</key>               <!-- added this for photo error -->
+    <string>NeedLibrary access for uploading Images</string> <!-- added this for photo error -->
+    <key>NSCameraUsageDescription</key>
+    <string>Need camera access for uploading Images</string>
+    <key>NSAppTransportSecurity</key>   <!-- added this for security configurations with http network requests -->
+    <dict>  <!-- added this for security configurations with http network requests -->
+        <key>NSAllowsArbitraryLoads</key><true/>    <!-- added this for security configurations with http network requests -->
+    </dict> <!-- added this for security configurations with http network requests -->
 </dict>
 </plist>
+

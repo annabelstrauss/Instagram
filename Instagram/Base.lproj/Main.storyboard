@@ -93,13 +93,48 @@
                     <view key="view" contentMode="scaleToFill" id="h13-U1-hHC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CY3-XG-stk">
+                                <rect key="frame" x="16" y="38" width="343" height="343"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="16S-yS-eqH" appends="YES" id="Yya-Vn-Nbv"/>
+                                </connections>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a caption..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m7U-0E-KWZ">
+                                <rect key="frame" x="16" y="411" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADL-nl-SxC">
+                                <rect key="frame" x="167" y="480" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Share"/>
+                                <connections>
+                                    <action selector="didPressShare:" destination="R1f-bl-jas" eventType="touchUpInside" id="0r6-Tp-Oua"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Capture" image="capture" id="Kwg-pp-jCf"/>
+                    <connections>
+                        <outlet property="captionTextField" destination="m7U-0E-KWZ" id="HZe-V5-5QS"/>
+                        <outlet property="photoImageView" destination="CY3-XG-stk" id="fnL-97-BdO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CTK-4S-dp2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="16S-yS-eqH">
+                    <connections>
+                        <action selector="onTapPhotoOpener:" destination="R1f-bl-jas" id="cKG-k1-X6y"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="993" y="726"/>
+            <point key="canvasLocation" x="992.79999999999995" y="725.48725637181417"/>
         </scene>
         <!--Profile-->
         <scene sceneID="MzV-vQ-bON">
@@ -112,13 +147,30 @@
                     <view key="view" contentMode="scaleToFill" id="ruj-Wk-Hot">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTE-q4-mKO">
+                                <rect key="frame" x="16" y="173" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOR-Xx-IXr">
+                                <rect key="frame" x="160" y="281" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log Out"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" id="cJi-v8-CtY"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="WTE-q4-mKO" id="eZ4-Qr-pJ9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3SP-Fl-8MO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="726"/>
+            <point key="canvasLocation" x="1932" y="725.48725637181417"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WyU-Mn-kQr">
