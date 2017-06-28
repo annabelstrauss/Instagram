@@ -72,7 +72,9 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
             print(success)
             self.tabBarController?.selectedIndex = 0 //move to Home once post is created
         }
-        
+        //sets the photo and caption back to default (aka nothing)
+        photoImageView.image = nil
+        captionTextField.text = nil
     }
     
 

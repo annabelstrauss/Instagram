@@ -9,21 +9,78 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    var myPosts: [PFObject]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
         nameLabel.text = PFUser.current()?.username
+        
+        //the next few lines lay out the items in the collection view nicely
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 0
+        let numCellsPerLine: CGFloat = 3
+        let interItemSpacingTotal = layout.minimumInteritemSpacing * (numCellsPerLine - 1)
+        let width = collectionView.frame.size.width / numCellsPerLine - interItemSpacingTotal / numCellsPerLine
+        layout.itemSize = CGSize(width: width, height: width)
+        
+        fetchMyPosts()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchMyPosts()
+        collectionView.contentOffset = CGPoint(x: 0, y: 0) //jumps collectionView back up to the top
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return myPosts?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        
+        let post = myPosts![indexPath.item]
+        let photo = post["media"] as! PFFile
+        
+        //set the photo image
+        photo.getDataInBackground { (imageData: Data!, error: Error?) in
+            cell.photoImageView.image = UIImage(data:imageData)
+        }
+        
+        return cell
+    }
+    
+    //====== GET THE DATA FROM THE CLOUD =======
+    func fetchMyPosts() {
+        // construct query
+        let query = PFQuery(className: "Post")
+        query.addDescendingOrder("createdAt")
+        
+        // fetch data asynchronously
+        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+            if let posts = posts {
+                // do something with the array of object returned by the call
+                self.myPosts = posts
+                self.collectionView.reloadData()
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+    }//close fetchMyPosts
     
 
 }

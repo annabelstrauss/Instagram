@@ -9,11 +9,12 @@
 import UIKit
 import Parse
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     @IBOutlet weak var postsTableView: UITableView!
     var allPosts: [PFObject]?
     var refreshControl: UIRefreshControl!
+    var isMoreDataLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    //====== GET THE DATA FROM THE CLOUD =======
     func fetchData() {
         // construct query
         let query = PFQuery(className: "Post")
@@ -81,16 +83,64 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 print(error?.localizedDescription)
             }
+            //update flag for infinite scrolling
+            self.isMoreDataLoading = false
+        }
+    }
+    
+    //====== GET MORE DATA FOR INFINITE SCROLLING =======
+    func fetchMoreData() {
+        // construct query
+        let query = PFQuery(className: "Post")
+        query.addDescendingOrder("createdAt")
+        query.limit = 20
+        query.skip = (self.allPosts?.count)!
+        
+        // fetch data asynchronously
+        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+            if let posts = posts {
+                // do something with the array of object returned by the call
+                self.allPosts?.append(contentsOf: posts)
+                self.postsTableView.reloadData()
+            } else {
+                print(error?.localizedDescription)
+            }
+            //update flag for infinite scrolling
+            self.isMoreDataLoading = false
         }
     }
 
     
-    //THIS IS PULL TO REFRESH
+    //====== PULL TO REFRESH =======
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         fetchData()
     }
     
+    //====== INFINITE SCROLL =======
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Calculate the position of one screen length before the bottom of the results
+        let scrollViewContentHeight = postsTableView.contentSize.height
+        let scrollOffsetThreshold = scrollViewContentHeight - postsTableView.bounds.size.height
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && postsTableView.isDragging) {
+            
+            // ... Code to load more data ...
+            if(!self.isMoreDataLoading){
+                fetchMoreData()
+                NSLog("hi")
+            }
+            
+            isMoreDataLoading = true
+        }
+    }
     
+    /*
+     * This makes the grey selection go away when you go back to table view
+     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        postsTableView.deselectRow(at: indexPath, animated: false)
+    }
     
     
     
