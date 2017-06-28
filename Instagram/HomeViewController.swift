@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var postsTableView: UITableView!
     var allPosts: [PFObject]?
+    var refreshControl: UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,21 +23,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postsTableView.dataSource = self
         
         // Initialize a Refresh Control
-        let refreshControl = UIRefreshControl()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        // add refresh control to table view
+        postsTableView.insertSubview(refreshControl, at: 0)
         
         fetchData()
-        postsTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fetchData()
-        postsTableView.reloadData()
-        postsTableView.setContentOffset(CGPoint(x: 0, y: 0), animated:true) //jumps tableView back up to the top
+        postsTableView.contentOffset = CGPoint(x: 0, y: 0) //jumps tableView back up to the top
     }
     
 
@@ -75,6 +76,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // do something with the array of object returned by the call
                 self.allPosts = posts
                 self.postsTableView.reloadData()
+                // Tell the refreshControl to stop spinning
+                self.refreshControl.endRefreshing()
             } else {
                 print(error?.localizedDescription)
             }
@@ -82,7 +85,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     
-    
+    //THIS IS PULL TO REFRESH
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        fetchData()
+    }
     
     
     
