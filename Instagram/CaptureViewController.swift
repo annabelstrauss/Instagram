@@ -23,6 +23,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
+    
     /* 
     * This is the delegate method
     */
