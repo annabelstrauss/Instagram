@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
             let user = post["author"] as! PFUser
             usernameLabel.text = user.username //send over the username
             captionLabel.text = post["caption"] as! String
-            if var date = post["timestamp"]{
+            if let date = post["timestamp"]{
                 timestampLabel.text = date as! String
             } else {
                 timestampLabel.text = "No Date"

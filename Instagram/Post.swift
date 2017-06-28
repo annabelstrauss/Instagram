@@ -23,7 +23,7 @@ class Post: NSObject {
         let post = PFObject(className: "Post")
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy"
+        dateFormatter.dateFormat = "MMM d, yyyy"
         let date = dateFormatter.string(from: timestamp!)
         
         //Add relevant fields to the object

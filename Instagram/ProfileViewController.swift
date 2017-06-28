@@ -11,7 +11,6 @@ import Parse
 
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var myPosts: [PFObject]?
     
@@ -21,7 +20,10 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        nameLabel.text = PFUser.current()?.username
+        //nameLabel.text = PFUser.current()?.username
+        //make profile pic circular
+        //profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
+        //profilePicImageView.clipsToBounds = true;
         
         //the next few lines lay out the items in the collection view nicely
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -42,6 +44,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     override func viewWillAppear(_ animated: Bool) {
         fetchMyPosts()
+        //numPostsLabel.text = myPosts?.count as! String
+        print(myPosts?.count)
         collectionView.contentOffset = CGPoint(x: 0, y: 0) //jumps collectionView back up to the top
     }
     
@@ -91,6 +95,12 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             let detailViewController = segue.destination as! DetailViewController //tell it its destination
             detailViewController.post = post
         }
+    }
+    
+    //====== FOR HEADER THING =======
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
+        return headerView
     }
     
 

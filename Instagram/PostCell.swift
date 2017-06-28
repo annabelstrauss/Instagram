@@ -12,10 +12,18 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var profilePicImageView: UIImageView!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        //make profile pic circular
+        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
+        profilePicImageView.clipsToBounds = true;
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

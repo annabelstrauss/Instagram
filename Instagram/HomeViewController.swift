@@ -56,6 +56,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let photo = post["media"] as! PFFile
         
         cell.captionLabel.text = caption as? String //set the caption text
+        let user = post["author"] as! PFUser
+        cell.usernameLabel.text = user.username
+        if let date = post["timestamp"]{
+            cell.dateLabel.text = date as! String
+        } else {
+            cell.dateLabel.text = "No Date"
+        }
         
         //set the photo image
         photo.getDataInBackground { (imageData: Data!, error: Error?) in
@@ -70,6 +77,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // construct query
         let query = PFQuery(className: "Post")
         query.addDescendingOrder("createdAt")
+        query.includeKey("author")
         query.limit = 20
         
         // fetch data asynchronously
@@ -93,6 +101,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // construct query
         let query = PFQuery(className: "Post")
         query.addDescendingOrder("createdAt")
+        query.includeKey("author")
         query.limit = 20
         query.skip = (self.allPosts?.count)!
         
