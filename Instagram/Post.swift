@@ -18,9 +18,13 @@ class Post: NSObject {
      - parameter caption: Caption text input by the user
      - parameter completion: Block to be executed after save operation is complete
      */
-    class func postUserImage(image: UIImage?, withCaption caption: String?, withCompletion completion: PFBooleanResultBlock?) {
+    class func postUserImage(image: UIImage?, withCaption caption: String?, withTimestamp timestamp: Date?, withCompletion completion: PFBooleanResultBlock?) {
         //Create Parse object PFObject
         let post = PFObject(className: "Post")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        let date = dateFormatter.string(from: timestamp!)
         
         //Add relevant fields to the object
         post["media"] = getPFFileFromImage(image: image) //PFFile column type
@@ -28,6 +32,7 @@ class Post: NSObject {
         post["caption"] = caption
         post["likesCount"] = 0
         post["commentsCount"] = 0
+        post["timestamp"] = date
         
         // Save object (following function will save the object in Parse asynchronously)
         post.saveInBackground(block: completion)

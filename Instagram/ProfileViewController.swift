@@ -69,6 +69,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         // construct query
         let query = PFQuery(className: "Post")
         query.addDescendingOrder("createdAt")
+        query.includeKey("author")
         
         // fetch data asynchronously
         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
@@ -81,6 +82,16 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             }
         }
     }//close fetchMyPosts
+    
+    //====== SEGUE TO DETAIL VIEW =======
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UICollectionViewCell
+        if let indexPath = collectionView.indexPath(for: cell) {//get this to find the actual post
+            let post = myPosts![indexPath.item] //get the current post
+            let detailViewController = segue.destination as! DetailViewController //tell it its destination
+            detailViewController.post = post
+        }
+    }
     
 
 }
