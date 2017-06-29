@@ -11,13 +11,15 @@ import Parse
 
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     var myPosts: [PFObject]?
     var newProfPic: UIImage?
+    var headerView: ProfileHeaderReusableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -35,7 +37,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         fetchMyPosts()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,10 +59,23 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         let post = myPosts![indexPath.item]
         let photo = post["media"] as! PFFile
         
+        cell.photoImageView.alpha = 0 //this is for fade in photos
+        activityIndicator.startAnimating()
+        
         //set the photo image
         photo.getDataInBackground { (imageData: Data!, error: Error?) in
-            cell.photoImageView.image = UIImage(data:imageData)
+            cell.photoImageView.image = UIImage(data:imageData) //set the image
+            
+            //fade the images in 
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.photoImageView.alpha = 1
+            }, completion: { (Bool) in
+                // after finished
+                self.activityIndicator.stopAnimating()
+            })
         }
+        
+        
         
         return cell
     }
@@ -106,6 +121,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         //make profile pic circular
         headerView.profilePicImageView.layer.cornerRadius = headerView.profilePicImageView.frame.size.width / 2;
         headerView.profilePicImageView.clipsToBounds = true;
+        
         //set the profile picture image only if it exists
         if let profPic = PFUser.current()?["portrait"] as? PFFile {
             profPic.getDataInBackground { (imageData: Data!, error: Error?) in
@@ -116,16 +132,26 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         headerView.numPostsLabel.text = String(describing: myPosts?.count ?? 0)
         
         headerView.bioTextField.delegate = self;
-        
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            let newtext = headerView.bioTextField.text!
-            print("😄 \(newtext)")
-            PFUser.current()?["bioText"] = newtext
-            PFUser.current()?.saveInBackground()
-            headerView.bioTextField.text = PFUser.current()?["bioText"] as! String
+        if let bioText = PFUser.current()?["bioText"] {
+            headerView.bioTextField.text = bioText as! String
         }
         
+        self.headerView = headerView
+        
         return headerView
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let newtext = headerView?.bioTextField.text {
+            PFUser.current()?["bioText"] = newtext
+            PFUser.current()?.saveInBackground(block: { (success: Bool, error: Error?) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if success{
+                    print("😆success!")
+                }
+            })
+        }
     }
     
     
@@ -197,5 +223,5 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }//close choosePhoto
     
     
-
+    
 }
