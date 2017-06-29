@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,35 +21,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="Qwd-UG-x3c">
-                                <rect key="frame" x="157" y="217" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="wnr-hJ-rwI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EE7-Js-Myg">
-                                <rect key="frame" x="123" y="291" width="128" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instagramTextWhite" translatesAutoresizingMaskIntoConstraints="NO" id="cni-Au-WZb">
+                                <rect key="frame" x="41" y="226" width="292" height="127"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Qwd-UG-x3c" secondAttribute="bottom" constant="390" id="3S1-Py-5HY"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="EE7-Js-Myg" secondAttribute="bottom" constant="341" id="5Hl-Df-wJg"/>
-                            <constraint firstItem="Qwd-UG-x3c" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="197" id="8af-9m-TgF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Qwd-UG-x3c" secondAttribute="trailing" constant="142" id="DO7-Nh-goM"/>
-                            <constraint firstItem="EE7-Js-Myg" firstAttribute="top" secondItem="Qwd-UG-x3c" secondAttribute="bottom" constant="14" id="HMM-FY-Nqr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="EE7-Js-Myg" secondAttribute="trailing" constant="108" id="SDR-S3-28K"/>
-                            <constraint firstItem="Qwd-UG-x3c" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="141" id="UpW-Zu-pbR"/>
-                            <constraint firstItem="EE7-Js-Myg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="107" id="oa2-bD-w1E"/>
+                            <constraint firstItem="wnr-hJ-rwI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="HgL-Pu-1Qu"/>
+                            <constraint firstItem="wnr-hJ-rwI" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="LTV-0F-jWo"/>
+                            <constraint firstAttribute="trailing" secondItem="wnr-hJ-rwI" secondAttribute="trailing" id="UYN-Hh-kZZ"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="wnr-hJ-rwI" secondAttribute="bottom" id="Ukc-VF-PNk"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-60" width="60" height="60"/>
+        <image name="gradient" width="1080" height="1920"/>
+        <image name="instagramTextWhite" width="728" height="245"/>
     </resources>
 </document>

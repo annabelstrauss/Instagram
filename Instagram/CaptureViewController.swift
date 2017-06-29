@@ -13,6 +13,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,12 +92,17 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func didPressShare(_ sender: Any) {
+        
+        // Start the activity indicator
+        activityIndicator.startAnimating()
+        
         let caption = captionTextField.text
         let image = photoImageView.image
         Post.postUserImage(image: image, withCaption: caption, withTimestamp: Date()) { (success: Bool, error: Error?) in
             print("post was created!")
             print(success)
             self.tabBarController?.selectedIndex = 0 //move to Home once post is created
+            self.activityIndicator.stopAnimating() //stop activity indicator
         }
         //sets the photo and caption back to default (aka nothing)
         photoImageView.image = nil
