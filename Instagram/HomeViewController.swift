@@ -44,6 +44,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         fetchData()
         
+        //this is so view jumps back up to top
         let count = allPosts?.count ?? 0
         if (count > 0){
             postsTableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)

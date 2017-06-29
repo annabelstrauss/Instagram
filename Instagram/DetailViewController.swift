@@ -15,10 +15,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var profilePicImageView: UIImageView!
     var post: PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //make profile pic circular
+        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
+        profilePicImageView.clipsToBounds = true;
         
         if let post = post {
             let user = post["author"] as! PFUser
