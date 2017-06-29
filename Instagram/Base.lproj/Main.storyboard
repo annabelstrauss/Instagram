@@ -385,9 +385,6 @@
                                     <action selector="didPressLogout:" destination="2Mu-0B-XS9" eventType="touchUpInside" id="v7I-iN-mOG"/>
                                 </connections>
                             </button>
-                            <connections>
-                                <action selector="didTapLogOut:" destination="2Mu-0B-XS9" id="uQK-er-dN3"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -540,7 +537,7 @@
     <resources>
         <image name="Icon-60" width="60" height="60"/>
         <image name="feed_tab" width="25" height="25"/>
-        <image name="gradient" width="1080" height="1920"/>
+        <image name="gradient" width="500" height="889"/>
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="instagramTextWhite" width="728" height="245"/>
         <image name="plus" width="256" height="256"/>

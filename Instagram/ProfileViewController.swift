@@ -118,8 +118,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         headerView.bioTextField.delegate = self;
         
         func textFieldDidEndEditing(_ textField: UITextField) {
-            let newtext = headerView.bioTextField.text
-            print(newtext)
+            let newtext = headerView.bioTextField.text!
+            print("😄 \(newtext)")
             PFUser.current()?["bioText"] = newtext
             PFUser.current()?.saveInBackground()
             headerView.bioTextField.text = PFUser.current()?["bioText"] as! String

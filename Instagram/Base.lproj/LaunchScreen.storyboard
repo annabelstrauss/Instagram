@@ -21,21 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="wnr-hJ-rwI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="ikC-nl-Cgi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instagramTextWhite" translatesAutoresizingMaskIntoConstraints="NO" id="cni-Au-WZb">
-                                <rect key="frame" x="41" y="226" width="292" height="127"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instagramTextWhite" translatesAutoresizingMaskIntoConstraints="NO" id="tLy-9v-LIo">
+                                <rect key="frame" x="30" y="233" width="314" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="wnr-hJ-rwI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="HgL-Pu-1Qu"/>
-                            <constraint firstItem="wnr-hJ-rwI" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="LTV-0F-jWo"/>
-                            <constraint firstAttribute="trailing" secondItem="wnr-hJ-rwI" secondAttribute="trailing" id="UYN-Hh-kZZ"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="wnr-hJ-rwI" secondAttribute="bottom" id="Ukc-VF-PNk"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -44,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gradient" width="1080" height="1920"/>
+        <image name="gradient" width="500" height="900"/>
         <image name="instagramTextWhite" width="728" height="245"/>
     </resources>
 </document>
