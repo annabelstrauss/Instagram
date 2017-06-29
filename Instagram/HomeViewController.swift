@@ -66,6 +66,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let caption = post["caption"]
         let photo = post["media"] as! PFFile
         
+        
         cell.captionLabel.text = caption as? String //set the caption text
         let user = post["author"] as! PFUser
         cell.usernameLabel.text = user.username
@@ -78,6 +79,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //set the photo image
         photo.getDataInBackground { (imageData: Data!, error: Error?) in
             cell.photoImageView.image = UIImage(data:imageData)
+        }
+        
+        //set the profile picture image only if it exists
+        if let profPic = user["portrait"] as? PFFile {
+            profPic.getDataInBackground { (imageData: Data!, error: Error?) in
+                cell.profilePicImageView.image = UIImage(data:imageData)
+            }
         }
         
         return cell

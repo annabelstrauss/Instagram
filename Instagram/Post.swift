@@ -34,6 +34,7 @@ class Post: NSObject {
         post["commentsCount"] = 0
         post["timestamp"] = date
         
+        
         // Save object (following function will save the object in Parse asynchronously)
         post.saveInBackground(block: completion)
     

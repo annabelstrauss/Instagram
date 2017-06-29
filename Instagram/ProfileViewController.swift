@@ -101,9 +101,13 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         //make profile pic circular
         headerView.profilePicImageView.layer.cornerRadius = headerView.profilePicImageView.frame.size.width / 2;
         headerView.profilePicImageView.clipsToBounds = true;
-        if(newProfPic != nil){
-            headerView.profilePicImageView.image = newProfPic
+        //set the profile picture image only if it exists
+        if let profPic = PFUser.current()?["portrait"] as? PFFile {
+            profPic.getDataInBackground { (imageData: Data!, error: Error?) in
+                headerView.profilePicImageView.image = UIImage(data:imageData)
+            }
         }
+        
         headerView.numPostsLabel.text = String(describing: myPosts?.count ?? 0)
         
         return headerView
@@ -123,7 +127,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     /*
-     * This is the delegate method
+     * This is the delegate method for image picker for choosing a prof pic
      */
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -134,29 +138,41 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         // Do something with the images (based on your use case)
         newProfPic = editedImage
         
+        //uploads the new prof pic to the cloud
+        let portrait = Post.getPFFileFromImage(image: newProfPic)
+        PFUser.current()?["portrait"] = portrait
+        PFUser.current()?.saveInBackground()
+        
         // Dismiss UIImagePickerController to go back to your original view controller
         dismiss(animated: true, completion: nil)
     }
     
+    /*
+     * This is also for choosing a prof pic
+     */
     func choosePhoto() {
         // Instantiate a UIImagePickerController
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
-        vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
         
-        // Check that the camera is indeed supported on the device before trying to present it
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            print("Camera is available 📸")
+        //allow user to pick between photo library or camera
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {
+            action in
             vc.sourceType = .camera
-        } else {
-            print("Camera 🚫 available so we will use photo library instead")
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {
+            action in
             vc.sourceType = .photoLibrary
-        }
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        // Present the camera or photo library
-        self.present(vc, animated: true, completion: nil)
-    }
+        //Present the camera or photo library depending on what the user picked
+        self.present(alert, animated: true, completion: nil)
+    }//close choosePhoto
     
     
 

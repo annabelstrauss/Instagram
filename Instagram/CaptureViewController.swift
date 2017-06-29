@@ -44,24 +44,32 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func choosePhoto() {
         // Instantiate a UIImagePickerController
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
-        vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
         
-        // Check that the camera is indeed supported on the device before trying to present it
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            print("Camera is available 📸")
+        //allow user to pick between photo library or camera
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {
+            action in
             vc.sourceType = .camera
-        } else {
-            print("Camera 🚫 available so we will use photo library instead")
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {
+            action in
             vc.sourceType = .photoLibrary
-        }
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        // Present the camera or photo library
-        self.present(vc, animated: true, completion: nil)
+        //Present the camera or photo library depending on what the user picked
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func onTapPhotoOpener(_ sender: Any) {
