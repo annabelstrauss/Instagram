@@ -20,11 +20,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        //nameLabel.text = PFUser.current()?.username
-        //make profile pic circular
-        //profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
-        //profilePicImageView.clipsToBounds = true;
-        
         //the next few lines lay out the items in the collection view nicely
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.minimumInteritemSpacing = 5
@@ -99,7 +94,14 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     //====== FOR HEADER THING =======
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! ProfileHeaderReusableView
+        
+        headerView.nameLabel.text = PFUser.current()?.username
+        //make profile pic circular
+        headerView.profilePicImageView.layer.cornerRadius = headerView.profilePicImageView.frame.size.width / 2;
+        headerView.profilePicImageView.clipsToBounds = true;
+        headerView.numPostsLabel.text = String(describing: myPosts?.count ?? 0)
+        
         return headerView
     }
     

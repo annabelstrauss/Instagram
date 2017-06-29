@@ -12,9 +12,13 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionTextField: UITextField!
+    @IBOutlet weak var shareButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        shareButton.layer.cornerRadius = 10; // this value vary as per your desire
+        shareButton.clipsToBounds = true;
         
     }
 

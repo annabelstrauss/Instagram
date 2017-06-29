@@ -23,6 +23,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postsTableView.delegate = self
         postsTableView.dataSource = self
         
+        //this is for dynamic cell height
+        postsTableView.rowHeight = UITableViewAutomaticDimension
+        postsTableView.estimatedRowHeight = 500
+        
         // Initialize a Refresh Control
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
@@ -37,8 +41,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         fetchData()
-        postsTableView.contentOffset = CGPoint(x: 0, y: 0) //jumps tableView back up to the top
+        
+        let count = allPosts?.count ?? 0
+        if (count > 0){
+            postsTableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        }
+        
     }
     
 
