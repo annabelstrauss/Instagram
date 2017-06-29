@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionTextField: UITextField!
@@ -20,6 +20,15 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         shareButton.layer.cornerRadius = 10; // this value vary as per your desire
         shareButton.clipsToBounds = true;
         
+        //Put fancy instagram script in nav bar
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "InstaText")
+        imageView.image = #imageLiteral(resourceName: "instaText")
+        navigationItem.titleView = imageView
+        
+        captionTextField.delegate = self;
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,6 +36,11 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
+    //====== MAKES KEYBOARD GO AWAY WHEN USER TAPS "RETURN" =======
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     /* 
     * This is the delegate method

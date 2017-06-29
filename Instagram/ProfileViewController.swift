@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var myPosts: [PFObject]?
@@ -20,6 +20,9 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        //sets nav bar title to be current user's username
+        self.title = PFUser.current()?.username
         
         //the next few lines lay out the items in the collection view nicely
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -95,9 +98,11 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     //====== FOR HEADER THING =======
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! ProfileHeaderReusableView
         
         headerView.nameLabel.text = PFUser.current()?.username
+        
         //make profile pic circular
         headerView.profilePicImageView.layer.cornerRadius = headerView.profilePicImageView.frame.size.width / 2;
         headerView.profilePicImageView.clipsToBounds = true;
@@ -110,7 +115,24 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         headerView.numPostsLabel.text = String(describing: myPosts?.count ?? 0)
         
+        headerView.bioTextField.delegate = self;
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            let newtext = headerView.bioTextField.text
+            print(newtext)
+            PFUser.current()?["bioText"] = newtext
+            PFUser.current()?.saveInBackground()
+            headerView.bioTextField.text = PFUser.current()?["bioText"] as! String
+        }
+        
         return headerView
+    }
+    
+    
+    //====== MAKES KEYBOARD GO AWAY WHEN USER TAPS "RETURN" =======
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     //====== FOR LOG OUT =======

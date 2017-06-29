@@ -13,6 +13,7 @@ class ProfileHeaderReusableView: UICollectionReusableView {
     @IBOutlet weak var profilePicImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var numPostsLabel: UILabel!
+    @IBOutlet weak var bioTextField: UITextField!
     
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -27,11 +27,31 @@ class LoginViewController: UIViewController {
         }
         // add the cancel action to the alertController
         emptyFieldAlert.addAction(cancelAction)
+        
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        let gradient = CAGradientLayer()
+        
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
+        
+        view.layer.insertSublayer(gradient, at: 0)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //====== MAKES KEYBOARD GO AWAY WHEN USER TAPS "RETURN" =======
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     @IBAction func didPressSignIn(_ sender: Any) {
@@ -69,6 +89,7 @@ class LoginViewController: UIViewController {
         newUser.username = usernameTextField.text
         newUser.password = passwordTextField.text
         newUser["portrait"] = Post.getPFFileFromImage(image: #imageLiteral(resourceName: "profile_tab"))
+        newUser["bioText"] = ""
         
         newUser.signUpInBackground { (success: Bool, error: Error?) in
             if success {

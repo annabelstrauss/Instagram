@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //Do any additional setup after loading the view.
         postsTableView.delegate = self
         postsTableView.dataSource = self
         
@@ -27,11 +27,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postsTableView.rowHeight = UITableViewAutomaticDimension
         postsTableView.estimatedRowHeight = 500
         
-        // Initialize a Refresh Control
+        //Initialize a Refresh Control
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         // add refresh control to table view
         postsTableView.insertSubview(refreshControl, at: 0)
+        
+        //Put fancy instagram script in nav bar
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "InstaText")
+        imageView.image = #imageLiteral(resourceName: "instaText")
+        navigationItem.titleView = imageView
         
         fetchData()
     }
