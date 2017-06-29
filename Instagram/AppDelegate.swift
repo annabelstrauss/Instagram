@@ -34,6 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = tabbarViewController
         }
         
+        //log user out
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("logoutNotification"), object: nil, queue: OperationQueue.main) { (Notification) in
+            // Take user to logout screen
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            self.window?.rootViewController = loginViewController
+        }
+        
         return true
     }
 

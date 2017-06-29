@@ -105,5 +105,15 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         return headerView
     }
     
+    //====== FOR LOG OUT =======
+    @IBAction func didTapLogOut(_ sender: Any) {
+        
+        PFUser.logOutInBackground { (error: Error?) in
+            //PFUser.currentUser() will now be nil
+        }
+        NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
+    }//close didTapLogOut
+    
+    
 
 }
