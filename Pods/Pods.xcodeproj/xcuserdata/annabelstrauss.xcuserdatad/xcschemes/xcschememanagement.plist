@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RSKPlaceholderTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Sharaku.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +42,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>06319AA85B3DE2B12B1061512DB682AE</key>
+		<key>235C007FCBF36E022AED2CE0CA187097</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23E846A389432A2DFA80BC19040283CD</key>
+		<key>58E50C4C1C973B792F0A80F14F0FB7F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>6EE458AB7C9239893E5C6E840C0BF9B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9376E0206E28A9B4BDBA29FA180DAC47</key>
 		<dict>
 			<key>primary</key>
 			<true/>

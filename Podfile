@@ -7,7 +7,8 @@ target 'Instagram' do
 
   # Pods for Instagram
 	pod 'Parse'
-	pod "Sharaku"
+	pod 'Sharaku'
+	pod 'RSKPlaceholderTextView'
 
   target 'InstagramTests' do
     inherit! :search_paths

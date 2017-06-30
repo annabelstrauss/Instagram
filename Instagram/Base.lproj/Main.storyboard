@@ -94,15 +94,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="505" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jzy-UG-oYY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="507" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jzy-UG-oYY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="505" id="1B2-WI-LXz" customClass="PostCell" customModule="Instagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="505"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="507" id="1B2-WI-LXz" customClass="PostCell" customModule="Instagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="507"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1B2-WI-LXz" id="1b4-kT-iaJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="504.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="506.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4C9-rl-BJs">
@@ -112,7 +112,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is my caption " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRa-b6-Xvh">
-                                                    <rect key="frame" x="16" y="438" width="343" height="18"/>
+                                                    <rect key="frame" x="16" y="464" width="343" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -136,21 +136,34 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="hd9-Q2-kVb">
+                                                    <rect key="frame" x="14" y="434" width="25" height="25"/>
+                                                </imageView>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="9hH-83-ycT">
+                                                    <rect key="frame" x="52" y="435" width="25" height="25"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="4C9-rl-BJs" secondAttribute="trailing" id="7Og-UA-J4R"/>
                                                 <constraint firstItem="4C9-rl-BJs" firstAttribute="leading" secondItem="1b4-kT-iaJ" secondAttribute="leading" id="AWY-hn-S3q"/>
+                                                <constraint firstItem="hd9-Q2-kVb" firstAttribute="leading" secondItem="1b4-kT-iaJ" secondAttribute="leadingMargin" constant="6" id="Ar3-WS-Ite"/>
                                                 <constraint firstItem="xza-A0-8ur" firstAttribute="top" secondItem="1b4-kT-iaJ" secondAttribute="top" constant="18" id="CwE-zB-T2i"/>
                                                 <constraint firstItem="4C9-rl-BJs" firstAttribute="top" secondItem="zh7-lS-pdq" secondAttribute="bottom" constant="8" id="E1H-WW-eXo"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NRa-b6-Xvh" secondAttribute="bottom" constant="8" id="H9H-8V-beB"/>
+                                                <constraint firstItem="NRa-b6-Xvh" firstAttribute="top" secondItem="9hH-83-ycT" secondAttribute="bottom" constant="4" id="GTJ-Km-l4T"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NRa-b6-Xvh" secondAttribute="bottom" constant="25" id="H9H-8V-beB"/>
                                                 <constraint firstItem="xza-A0-8ur" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4eK-V1-mzY" secondAttribute="trailing" constant="8" id="JSm-eS-i2s"/>
                                                 <constraint firstAttribute="topMargin" secondItem="zh7-lS-pdq" secondAttribute="top" id="Lc9-zd-dmR"/>
                                                 <constraint firstItem="4eK-V1-mzY" firstAttribute="top" secondItem="1b4-kT-iaJ" secondAttribute="top" constant="15" id="cKJ-oT-d2x"/>
-                                                <constraint firstItem="NRa-b6-Xvh" firstAttribute="top" secondItem="4C9-rl-BJs" secondAttribute="bottom" constant="7" id="cLN-t7-yOm"/>
+                                                <constraint firstItem="NRa-b6-Xvh" firstAttribute="top" secondItem="4C9-rl-BJs" secondAttribute="bottom" constant="33" id="cLN-t7-yOm"/>
                                                 <constraint firstAttribute="trailing" secondItem="NRa-b6-Xvh" secondAttribute="trailing" constant="16" id="dxm-Vr-cKF"/>
                                                 <constraint firstItem="NRa-b6-Xvh" firstAttribute="leading" secondItem="1b4-kT-iaJ" secondAttribute="leading" constant="16" id="hcS-Ym-Oo4"/>
+                                                <constraint firstItem="NRa-b6-Xvh" firstAttribute="top" secondItem="hd9-Q2-kVb" secondAttribute="bottom" constant="5" id="hrW-Zy-dz8"/>
+                                                <constraint firstItem="hd9-Q2-kVb" firstAttribute="top" secondItem="4C9-rl-BJs" secondAttribute="bottom" constant="3" id="iLU-LG-7eF"/>
+                                                <constraint firstItem="9hH-83-ycT" firstAttribute="leading" secondItem="hd9-Q2-kVb" secondAttribute="trailing" constant="13" id="rgA-8a-O7f"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="xza-A0-8ur" secondAttribute="trailing" constant="8" id="spD-l1-V7w"/>
                                                 <constraint firstItem="4eK-V1-mzY" firstAttribute="leading" secondItem="zh7-lS-pdq" secondAttribute="trailing" constant="8" id="spf-Zq-yYm"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9hH-83-ycT" secondAttribute="trailing" constant="290" id="x45-bj-oFJ"/>
+                                                <constraint firstItem="9hH-83-ycT" firstAttribute="top" secondItem="4C9-rl-BJs" secondAttribute="bottom" constant="4" id="y4s-Lp-Mkh"/>
                                                 <constraint firstItem="zh7-lS-pdq" firstAttribute="leading" secondItem="1b4-kT-iaJ" secondAttribute="leadingMargin" constant="8" id="zvF-oE-Zii"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -205,7 +218,7 @@
                                     <action selector="didPressShare:" destination="R1f-bl-jas" eventType="touchUpInside" id="0r6-Tp-Oua"/>
                                 </connections>
                             </button>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="CY3-XG-stk">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plusButton" translatesAutoresizingMaskIntoConstraints="NO" id="CY3-XG-stk">
                                 <rect key="frame" x="16" y="91" width="98" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -231,13 +244,16 @@
                                     <action selector="onTapFilterButton:" destination="R1f-bl-jas" eventType="touchUpInside" id="dSN-mm-xQ4"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="E3l-8e-Myi">
-                                <rect key="frame" x="122" y="91" width="240" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="E3l-8e-Myi" customClass="RSKPlaceholderTextView" customModule="RSKPlaceholderTextView">
+                                <rect key="frame" x="124" y="91" width="237" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write a caption..."/>
+                                </userDefinedRuntimeAttributes>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -574,11 +590,13 @@
     </scenes>
     <resources>
         <image name="Icon-60" width="60" height="60"/>
+        <image name="comment" width="25" height="25"/>
         <image name="feed_tab" width="25" height="25"/>
         <image name="gradient" width="500" height="900"/>
+        <image name="heart" width="25" height="25"/>
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="instagramTextWhite" width="728" height="245"/>
-        <image name="plus" width="256" height="256"/>
+        <image name="plusButton" width="194" height="178"/>
         <image name="profile_tab" width="25" height="25"/>
     </resources>
 </document>

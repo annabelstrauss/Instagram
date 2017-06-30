@@ -8,15 +8,15 @@
 
 import UIKit
 import Sharaku
+import RSKPlaceholderTextView
 
 class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SHViewControllerDelegate, UITextViewDelegate {
     
     @IBOutlet weak var photoImageView: UIImageView!
-    //@IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var filterButton: UIButton!
-    @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var captionTextView: RSKPlaceholderTextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,10 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageView.image = #imageLiteral(resourceName: "instaText")
         navigationItem.titleView = imageView
         
+        
         captionTextView.delegate = self;
+        
+        //captionTextView.placeholder = "What do you want to say about this event?"
         
     }
 
@@ -131,7 +134,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.activityIndicator.stopAnimating() //stop activity indicator
         }
         //sets the photo and caption back to default (aka nothing)
-        photoImageView.image = nil
+        photoImageView.image = #imageLiteral(resourceName: "plusButton")
         captionTextView.text = nil
     }
 
