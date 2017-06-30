@@ -9,18 +9,25 @@
 import UIKit
 import Sharaku
 
-class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, SHViewControllerDelegate {
+class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SHViewControllerDelegate, UITextViewDelegate {
     
     @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var captionTextField: UITextField!
+    //@IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var captionTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //rounded edges for share button
         shareButton.layer.cornerRadius = 10; // this value vary as per your desire
         shareButton.clipsToBounds = true;
+        
+        //rounded edges for filter button
+        filterButton.layer.cornerRadius = 10; // this value vary as per your desire
+        filterButton.clipsToBounds = true;
         
         //Put fancy instagram script in nav bar
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
@@ -29,7 +36,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageView.image = #imageLiteral(resourceName: "instaText")
         navigationItem.titleView = imageView
         
-        captionTextField.delegate = self;
+        captionTextView.delegate = self;
         
     }
 
@@ -115,7 +122,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Start the activity indicator
         activityIndicator.startAnimating()
         
-        let caption = captionTextField.text
+        let caption = captionTextView.text
         let image = photoImageView.image
         Post.postUserImage(image: image, withCaption: caption, withTimestamp: Date()) { (success: Bool, error: Error?) in
             print("post was created!")
@@ -125,7 +132,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         //sets the photo and caption back to default (aka nothing)
         photoImageView.image = nil
-        captionTextField.text = nil
+        captionTextView.text = nil
     }
 
     
