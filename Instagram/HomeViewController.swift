@@ -40,6 +40,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         imageView.image = #imageLiteral(resourceName: "instaText")
         navigationItem.titleView = imageView
         
+        postsTableView.separatorStyle = .none //no grey line between cells
+        
         fetchData()
     }
 

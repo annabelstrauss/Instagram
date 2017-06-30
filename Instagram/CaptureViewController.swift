@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Sharaku
 
-class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, SHViewControllerDelegate {
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionTextField: UITextField!
@@ -68,7 +69,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
-        
+
         //allow user to pick between photo library or camera
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {
@@ -91,6 +92,24 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         choosePhoto()
     }
     
+    @IBAction func onTapFilterButton(_ sender: Any) {
+        let imageToBeFiltered = photoImageView.image
+        let vc = SHViewController(image: imageToBeFiltered!)
+        vc.delegate = self
+        self.present(vc, animated:true, completion: nil)
+    }
+    
+    //========FOR FILTERS===========
+    func shViewControllerImageDidFilter(image: UIImage) {
+        // Filtered image will be returned here.
+        photoImageView.image = image
+    }
+    
+    //========FOR FILTERS===========
+    func shViewControllerDidCancel() {
+        // This will be called when you cancel filtering the image.
+    }
+    
     @IBAction func didPressShare(_ sender: Any) {
         
         // Start the activity indicator
@@ -108,6 +127,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
         photoImageView.image = nil
         captionTextField.text = nil
     }
-    
 
+    
+    
 }
