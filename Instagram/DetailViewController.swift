@@ -38,6 +38,13 @@ class DetailViewController: UIViewController {
             photo.getDataInBackground { (imageData: Data!, error: Error?) in
                 self.photoImageView.image = UIImage(data:imageData)
             }
+            
+            //set the profile picture image only if it exists
+            if let profPic = user["portrait"] as? PFFile {
+                profPic.getDataInBackground { (imageData: Data!, error: Error?) in
+                    self.profilePicImageView.image = UIImage(data:imageData)
+                }
+            }
         }
     }//close viewDidLoad
     
